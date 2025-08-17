@@ -1,0 +1,36 @@
+
+# 定义分类及其描述 
+CLASSIFICATIONS = { 
+    "悲伤": "表达哀痛、悲恸、伤心的评论",
+    "愤怒": "表达愤怒、气愤、不满的评论",
+    "恐惧": "表达担忧、害怕、焦虑的评论",
+    "期待": "表达希望、期望、呼吁的评论", 
+    "信任": "表达信赖、感激、认可的评论",
+    "惊讶": "表达震惊、不可思议的评论",
+    "厌恶": "表达反感、嫌弃、鄙视的评论",
+    "其他": "无明显情感或难以分类的评论"
+}
+
+
+async def classify_single(session: aiohttp.ClientSession, discussion: Dict, examples: List[Dict]) -> str: 
+    """对单个讨论进行分类""" 
+    messages = [
+        {"role": "system", "content": """你是一个社交媒体评论分类助手。对于重大事故的评论，请根据主要表达的情感进行分类。注意：
+    1. 每条评论只分配最主要的一个情感类别
+    2. 优先考虑评论的核心表达而非表面情绪词
+    3. 注意识别反讽、比喻等修辞手法"""},
+        {"role": "user", "content": "以下是分类及其描述:\n" + "\n".join([f"{k}: {v}" for k, v in CLASSIFICATIONS.items()])},
+        {"role": "user", "content": f"请为以下评论分配一个类别，只需回复类别名称:\n{discussion['AF']}"}
+    ]
+
+
+examples = [
+    {"discussion": "十三个家庭天塌了 流泪 流泪", "classification": "悲伤"},
+    {"discussion": "校长必须严惩！消防措施呢！", "classification": "愤怒"},
+    {"discussion": "以后不敢让孩子住校了...", "classification": "恐惧"},
+    {"discussion": "希望各地学校都要引以为戒", "classification": "期待"},
+    {"discussion": "感谢消防员及时扑救", "classification": "信任"},
+    {"discussion": "天啊！怎么会这样！", "classification": "惊讶"},
+    {"discussion": "这种学校就该关门", "classification": "厌恶"},
+    {"discussion": "事发地点在哪", "classification": "其他"}
+]
