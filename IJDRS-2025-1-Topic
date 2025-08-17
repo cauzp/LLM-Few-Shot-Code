@@ -1,0 +1,36 @@
+# 定义分类及其描述 
+CLASSIFICATIONS = {  
+   "管理责任": "关于学校管理问题和直接责任人的评论",
+   "制度归因": "关于体制性问题和监管缺失的评论", 
+   "具体质疑": "对具体安全措施提出质疑的评论",
+   "政策建议": "提出改进措施和政策建议的评论",
+   "事实探寻": "询问和讨论事件具体细节的评论",
+   "社会关切": "表达社会层面关注和反思的评论",
+   "时空情境": "关注事发时间地点特殊性的评论",
+   "其他": "不属于上述类别的评论"
+}
+
+
+async def classify_single(session: aiohttp.ClientSession, discussion: Dict, examples: List[Dict]) -> str: 
+    """对单个讨论进行分类""" 
+    messages = [
+        {"role": "system", "content": """你是一个社交媒体评论分类助手。对于重大事故的评论，请根据主要表达的主题进行分类。注意：
+    1. 每条评论只分配最主要的一个主题类别
+    2. 优先考虑评论的核心议题而非表面字眼
+    3. 注意评论的语境和整体表达意图"""}, 
+        {"role": "user", "content": "以下是分类及其描述:\n" + "\n".join([f"{k}: {v}" for k, v in CLASSIFICATIONS.items()])},
+        {"role": "user", "content": f"请为以下评论分配一个类别，只需回复类别名称:\n{discussion['AF']}"}
+    ]
+
+async def main():
+    # 示例数据
+    examples = [
+        {"discussion": "宿管去哪了，校长要负全责", "classification": "管理责任"},
+        {"discussion": "私立学校的问题，监管太差", "classification": "制度归因"},
+        {"discussion": "消防设施在哪，为什么门是锁的", "classification": "具体质疑"},
+        {"discussion": "必须安装烟感，加强安全检查", "classification": "政策建议"},
+        {"discussion": "是小学还是中学，伤亡者是学生吗", "classification": "事实探寻"},
+        {"discussion": "一年内第二起了，教训不长记", "classification": "社会关切"},
+        {"discussion": "都快过年了还没放假", "classification": "时空情境"},
+        {"discussion": "转发扩散", "classification": "其他"}
+    ]
