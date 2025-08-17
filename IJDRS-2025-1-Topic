@@ -10,10 +10,7 @@ CLASSIFICATIONS = {
    "其他": "不属于上述类别的评论"
 }
 
-
-async def classify_single(session: aiohttp.ClientSession, discussion: Dict, examples: List[Dict]) -> str: 
-    """对单个讨论进行分类""" 
-    messages = [
+messages = [
         {"role": "system", "content": """你是一个社交媒体评论分类助手。对于重大事故的评论，请根据主要表达的主题进行分类。注意：
     1. 每条评论只分配最主要的一个主题类别
     2. 优先考虑评论的核心议题而非表面字眼
@@ -22,15 +19,44 @@ async def classify_single(session: aiohttp.ClientSession, discussion: Dict, exam
         {"role": "user", "content": f"请为以下评论分配一个类别，只需回复类别名称:\n{discussion['AF']}"}
     ]
 
-async def main():
-    # 示例数据
-    examples = [
-        {"discussion": "宿管去哪了，校长要负全责", "classification": "管理责任"},
-        {"discussion": "私立学校的问题，监管太差", "classification": "制度归因"},
-        {"discussion": "消防设施在哪，为什么门是锁的", "classification": "具体质疑"},
-        {"discussion": "必须安装烟感，加强安全检查", "classification": "政策建议"},
-        {"discussion": "是小学还是中学，伤亡者是学生吗", "classification": "事实探寻"},
-        {"discussion": "一年内第二起了，教训不长记", "classification": "社会关切"},
-        {"discussion": "都快过年了还没放假", "classification": "时空情境"},
-        {"discussion": "转发扩散", "classification": "其他"}
+examples = [
+        # --- Fact-Finding (事实探寻) ---
+        {"discussion": "这是什么类型的学校？", "classification": "事实探寻"},
+        {"discussion": "起火的最初原因是什么？", "classification": "事实探寻"},
+        {"discussion": "宿舍里有多少学生？", "classification": "事实探寻"},
+        
+        # --- Management Accountability (管理责任) ---
+        {"discussion": "宿舍管理员在哪里？", "classification": "管理责任"},
+        {"discussion": "校长必须负全责", "classification": "管理责任"},
+        {"discussion": "为什么晚上没有工作人员看管？", "classification": "管理责任"},
+        
+        # --- Policy Recommendations (政策建议) ---
+        {"discussion": "所有宿舍强制安装烟雾探测器", "classification": "政策建议"},
+        {"discussion": "必须要求定期进行安全检查", "classification": "政策建议"},
+        {"discussion": "需要更严格的寄宿学校规定", "classification": "政策建议"},
+        
+        # --- Safety Concerns (具体质疑) ---
+        {"discussion": "消防警报安装了吗？能用吗？", "classification": "具体质疑"},
+        {"discussion": "为什么宿舍门是锁着的？", "classification": "具体质疑"},
+        {"discussion": "紧急出口在哪里？", "classification": "具体质疑"},
+        
+        # --- Social Commentary (社会关切) ---
+        {"discussion": "今年第二次学校火灾了", "classification": "社会关切"},
+        {"discussion": "这显示了教育水平在下降", "classification": "社会关切"},
+        {"discussion": "农村学校的风险越来越大", "classification": "社会关切"},
+        
+        # --- Systemic Attribution (制度归因) ---
+        {"discussion": "私立学校的又一悲剧——利益重于安全", "classification": "制度归因"},
+        {"discussion": "教育监督的彻底失败", "classification": "制度归因"},
+        {"discussion": "学校检查制度存在系统性问题", "classification": "制度归因"},
+        
+        # --- Temporal Context (时空情境) ---
+        {"discussion": "为什么学生们没有放假过年？", "classification": "时空情境"},
+        {"discussion": "早该放假了", "classification": "时空情境"},
+        {"discussion": "春节前的悲剧性时刻", "classification": "时空情境"},
+        
+        # --- Other (其他) ---
+        {"discussion": "分享新闻", "classification": "其他"},
+        {"discussion": "无关评论", "classification": "其他"},
+        {"discussion": "混合或不明确的主题", "classification": "其他"}
     ]
