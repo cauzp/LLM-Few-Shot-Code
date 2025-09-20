@@ -140,7 +140,7 @@ if __name__ == '__main__':
     # For example:
     # client = OpenAI()
     # response = client.chat.completions.create(
-    #     model="gpt-4",
+    #     model="DeepSeek R1 671B",
     #     messages=final_messages,
     #     temperature=0
     # )
