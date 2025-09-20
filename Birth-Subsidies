@@ -1,94 +1,148 @@
-model="DeepSeek-R1-671B", #  或者 "gpt-3.5-turbo", "gpt-4o-2024-08-06" 等您选择的模型
-temperature=0,         # 分类任务建议为0以保证一致性
+# -*- coding: utf-8 -*-
+#
+# This script defines the thematic framework and few-shot examples for classifying
+# social media comments related to China's National Childcare Subsidy Policy.
+# The framework is based on the consolidated 6-category scheme developed
+# for the research paper.
+#
+# Last Updated: September 21, 2025
 
+# --- 1. THEMATIC FRAMEWORK DEFINITION ---
+# This dictionary contains the final six thematic categories and their formal definitions.
+# These definitions are used to instruct the LLM on the scope of each category.
 
 CLASSIFICATIONS = {
-    "时间边界焦虑表达": "评论聚焦于政策时间节点设定引发的焦虑情绪，包括'差几天'、'完美错过'、'卡点'等表达，体现用户对政策时间边界的强烈关注和边界公平性的质疑。",
-    
-    "代际群体怨念抒发": "评论表达特定年龄群体(主要是80后)对政策获得感缺失的集体抱怨，包括'80后什么都赶不上'、'专门绕着80后'等话语，反映代际政策差异带来的被剥夺感。",
-    
-    "政策执行困惑询问": "评论围绕政策具体执行细节的困惑和疑问，包括'怎么领'、'去哪领'、'什么时候发'等实操性问题，反映政策传达与落实的'最后一公里'问题。",
-    
-    "经济价值认知分化": "评论对补贴金额价值的多元化认知表达，从'有总比没有好'到'杯水车薪'的不同态度，体现不同经济层次用户对政策价值的差异化评价。",
-    
-    "生育决策博弈思考": "评论涉及补贴政策与个人生育决策的复杂关系讨论，包括'为了补贴再生一个'、'不会为了这点钱生'等表达，反映政策激励与实际生育选择的博弈。",
-    
-    "社会公平诉求表达": "评论提出对政策覆盖面和公平性的更高期待，包括'所有孩子都应该有'、'为什么不到18岁'等诉求，体现对更广泛社会公平的期望。",
-    
-    "政策真实性质疑": "评论表达对政策落实真实性的怀疑态度，包括'真的假的'、'能领到吗'、'谁领到了'等质疑，反映对政策兑现能力的信任危机。",
-    
-    "申领条件担忧讨论": "评论关注政策申领的具体条件和门槛，包括'没结婚证能领吗'、'农村户口有吗'等担忧，体现对政策包容性和可及性的关切。",
-    
-    "政策优化建议提出": "评论提出对现有政策的改进建议和期望，包括提高补贴标准、扩大覆盖范围、延长发放年限等建设性意见，反映用户的政策参与意识。",
-    
-    "情感宣泄与调侃": "评论通过幽默调侃、情感发泄等方式表达对政策的态度，包括各种网络梗、自嘲表达等，体现网民的情绪释放和社交互动需求。",
-    
-    "其他/无法分类": "不属于以上明确类别的评论内容，包括与育儿补贴政策不直接相关的话题、纯粹无关内容、无明确指向的零散表达等。"
+    "Uncertainty Regarding Policy Access & Implementation":
+        "This theme encompasses comments expressing confusion or concern about the practical and procedural aspects of the subsidy. It includes direct questions about the application process (how, where, and when to apply) as well as anxieties regarding the specific eligibility requirements and potential barriers to access.",
+
+    "Discourse on Policy Fairness & Equity":
+        "This theme captures all discourse centered on the principles of distributive justice and fairness. It includes grievances related to the policy's temporal boundaries (eligibility cutoffs), perceptions of intergenerational inequity, and broader appeals for a more universally inclusive policy design.",
+
+    "Evaluation of Policy's Economic Incentive & Impact":
+        "This theme includes comments that perform a cost-benefit analysis of the subsidy. It covers the public's divergent perceptions of the subsidy's financial value and the subsequent deliberation on whether this economic incentive is substantial enough to influence personal fertility decisions.",
+
+    "Public Scrutiny & Calls for Reform":
+        "This theme represents the public acting as both critic and contributor. It includes comments expressing skepticism about the government's ability or intent to realize the policy, as well as constructive suggestions for improving the policy.",
+
+    "Emotional Venting & Jocular Commentary":
+        "This theme captures comments that do not offer a substantive inquiry or critique, but rather use humor, sarcasm, memes, or purely emotional language to react to the policy. It reflects the social and affective dimensions of online discourse.",
+
+    "Other / Unclassifiable":
+        "This is a residual category for comments that are irrelevant to the childcare subsidy policy, nonsensical, too fragmented to interpret, or are purely conversational and off-topic."
 }
 
+# --- 2. FEW-SHOT LEARNING EXAMPLES ---
+# This list provides three high-quality, representative examples for each category.
+# These examples are crucial for "teaching" the LLM the nuances of the classification task.
+
 EXAMPLES = [
-    # 时间边界焦虑表达
-    {"discussion": "21年12月31号完美错过", "classification": "时间边界焦虑表达"},
-    {"discussion": "差几天就满3岁了", "classification": "时间边界焦虑表达"},
-    {"discussion": "为什么是2022年1月1日开始", "classification": "时间边界焦虑表达"},
-    
-    # 代际群体怨念抒发
-    {"discussion": "80后什么好事都完美错过", "classification": "代际群体怨念抒发"},
-    {"discussion": "除了音乐没有辜负80后", "classification": "代际群体怨念抒发"},
-    {"discussion": "专绕着80后走", "classification": "代际群体怨念抒发"},
-    
-    # 政策执行困惑询问
-    {"discussion": "怎么领？去哪领？", "classification": "政策执行困惑询问"},
-    {"discussion": "村里说没有这个政策", "classification": "政策执行困惑询问"},
-    {"discussion": "什么时候开始发放", "classification": "政策执行困惑询问"},
-    
-    # 经济价值认知分化
-    {"discussion": "有总比没有好", "classification": "经济价值认知分化"},
-    {"discussion": "3600算什么，杯水车薪", "classification": "经济价值认知分化"},
-    {"discussion": "够买奶粉了", "classification": "经济价值认知分化"},
-    
-    # 生育决策博弈思考
-    {"discussion": "为了补贴再要一个", "classification": "生育决策博弈思考"},
-    {"discussion": "不会为了这点钱生孩子", "classification": "生育决策博弈思考"},
-    {"discussion": "想生的不差这三千，不想生的给三万也不生", "classification": "生育决策博弈思考"},
-    
-    # 社会公平诉求表达
-    {"discussion": "所有孩子都应该有", "classification": "社会公平诉求表达"},
-    {"discussion": "为什么不到18岁", "classification": "社会公平诉求表达"},
-    {"discussion": "二胎三胎都应该补贴", "classification": "社会公平诉求表达"},
-    
-    # 政策真实性质疑
-    {"discussion": "真的假的", "classification": "政策真实性质疑"},
-    {"discussion": "谁领到了", "classification": "政策真实性质疑"},
-    {"discussion": "又是画饼", "classification": "政策真实性质疑"},
-    
-    # 申领条件担忧讨论
-    {"discussion": "没结婚证能领吗", "classification": "申领条件担忧讨论"},
-    {"discussion": "农村户口有吗", "classification": "申领条件担忧讨论"},
-    {"discussion": "单亲妈妈可以领吗", "classification": "申领条件担忧讨论"},
-    
-    # 政策优化建议提出
-    {"discussion": "每年36000元，一直发到18岁，这才具有诱惑力", "classification": "政策优化建议提出"},
-    {"discussion": "应该给二胎三胎补贴", "classification": "政策优化建议提出"},
-    {"discussion": "不要补贴，幼儿园免费", "classification": "政策优化建议提出"},
-    
-    # 情感宣泄与调侃
-    {"discussion": "小名就叫三千六得了", "classification": "情感宣泄与调侃"},
-    {"discussion": "宝宝：小小的我已经会赚钱啦", "classification": "情感宣泄与调侃"},
-    {"discussion": "生99个就能领100万", "classification": "情感宣泄与调侃"},
-    
-    # 其他/无法分类
-    {"discussion": "抖音什么都有", "classification": "其他/无法分类"},
-    {"discussion": "会不会有鱼", "classification": "其他/无法分类"},
-    {"discussion": "我是秦始皇", "classification": "其他/无法分类"}
+    # Category: Uncertainty Regarding Policy Access & Implementation
+    {"discussion": "怎么领？去哪领？", "classification": "Uncertainty Regarding Policy Access & Implementation"},
+    {"discussion": "没结婚证能领吗", "classification": "Uncertainty Regarding Policy Access & Implementation"},
+    {"discussion": "农村户口有吗", "classification": "Uncertainty Regarding Policy Access & Implementation"},
+
+    # Category: Discourse on Policy Fairness & Equity
+    {"discussion": "21年12月31号完美错过", "classification": "Discourse on Policy Fairness & Equity"},
+    {"discussion": "80后什么好事都完美错过", "classification": "Discourse on Policy Fairness & Equity"},
+    {"discussion": "所有孩子都应该有", "classification": "Discourse on Policy Fairness & Equity"},
+
+    # Category: Evaluation of Policy's Economic Incentive & Impact
+    {"discussion": "3600算什么，杯水车薪", "classification": "Evaluation of Policy's Economic Incentive & Impact"},
+    {"discussion": "不会为了这点钱生孩子", "classification": "Evaluation of Policy's Economic Incentive & Impact"},
+    {"discussion": "想生的不差这三千，不想生的给三万也不生", "classification": "Evaluation of Policy's Economic Incentive & Impact"},
+
+    # Category: Public Scrutiny & Calls for Reform
+    {"discussion": "真的假的", "classification": "Public Scrutiny & Calls for Reform"},
+    {"discussion": "又是画饼", "classification": "Public Scrutiny & Calls for Reform"},
+    {"discussion": "每年36000元，一直发到18岁，这才具有诱惑力", "classification": "Public Scrutiny & Calls for Reform"},
+
+    # Category: Emotional Venting & Jocular Commentary
+    {"discussion": "小名就叫三千六得了", "classification": "Emotional Venting & Jocular Commentary"},
+    {"discussion": "宝宝：小小的我已经会赚钱啦", "classification": "Emotional Venting & Jocular Commentary"},
+    {"discussion": "生99个就能领100万", "classification": "Emotional Venting & Jocular Commentary"},
+
+    # Category: Other / Unclassifiable
+    {"discussion": "抖音什么都有", "classification": "Other / Unclassifiable"},
+    {"discussion": "会不会有鱼", "classification": "Other / Unclassifiable"},
+    {"discussion": "我是秦始皇", "classification": "Other / Unclassifiable"}
 ]
+
+# --- 3. PROMPT STRUCTURE FOR THE LARGE LANGUAGE MODEL ---
+# This list defines the sequence of messages for constructing the final prompt.
+# It uses f-string placeholders {classifications} and {examples} which will be
+# formatted with the data above before being sent to the LLM API.
 
 MESSAGES_PATTERN = [
-    {"role": "system", "content": """你是一个社交媒体评论分类助手。对于关于"中国育儿补贴政策"相关的社交媒体评论，请根据评论的主要主题进行分类。注意：
-每条评论只分配最主要的一个主题类别。
-优先考虑评论的核心内容而非表面情绪或个别词语。
-注意识别评论中可能存在的网络用语、方言表达或隐含意义，并结合政策背景判断其真实意图。"""},
-    { "role": "user", "content": "以下是分类及其描述:\n{classifications}\n\n以下是示例:\n{examples}" },
-    { "role": "user", "content": "请为以下评论分配一个主题类别，只需回复类别名称:\n{text}" }
+    {
+        "role": "system",
+        "content": """You are a social media comment classification assistant. For comments regarding "China's National Childcare Subsidy Policy," please classify them based on their primary theme. Note:
+1. Assign only the single most relevant category to each comment.
+2. Prioritize the core content over superficial sentiment or individual words.
+3. Be mindful of slang, regional expressions, or implicit meanings to judge the true intent."""
+    },
+    {
+        "role": "user",
+        "content": "Here are the categories and their definitions:\n{classifications}\n\nHere are some examples:\n{examples}"
+    },
+    {
+        "role": "user",
+        "content": "Please assign a category for the following comment. Respond with only the category name:\n{text}"
+    }
 ]
 
+# --- 4. UTILITY FUNCTION TO BUILD THE PROMPT ---
+# This is an example function demonstrating how to use the above components
+# to construct a complete prompt ready for an LLM API call.
+
+def build_prompt_messages(text_to_classify):
+    """
+    Constructs the full list of messages for the LLM API call.
+
+    Args:
+        text_to_classify (str): The new user comment that needs classification.
+
+    Returns:
+        list: A list of dictionaries representing the conversation history
+              and the final classification request.
+    """
+    # Format the classifications string: "Category Name: Definition"
+    classifications_str = "\n".join([f"{name}: {desc}" for name, desc in CLASSIFICATIONS.items()])
+
+    # Format the examples string: "Comment: [discussion]\nCategory: [classification]"
+    examples_str = "\n\n".join([f"Comment: {ex['discussion']}\nCategory: {ex['classification']}" for ex in EXAMPLES])
+
+    # Create a deep copy of the message pattern to avoid modifying the original
+    import copy
+    prompt_messages = copy.deepcopy(MESSAGES_PATTERN)
+
+    # Substitute the formatted classifications, examples, and new text into the prompt
+    prompt_messages[1]["content"] = prompt_messages[1]["content"].format(
+        classifications=classifications_str,
+        examples=examples_str
+    )
+    prompt_messages[2]["content"] = prompt_messages[2]["content"].format(text=text_to_classify)
+
+    return prompt_messages
+
+# --- EXAMPLE USAGE ---
+if __name__ == '__main__':
+    # Define a new comment to be classified
+    new_comment = "这个钱直接打到社保卡里吗？" # "Will this money be sent directly to my social security card?"
+
+    # Build the full prompt using the utility function
+    final_messages = build_prompt_messages(new_comment)
+
+    # Print the constructed messages to see the final prompt structure
+    import json
+    print(json.dumps(final_messages, indent=2, ensure_ascii=False))
+
+    # In a real application, you would now send `final_messages` to your LLM's API.
+    # For example:
+    # client = OpenAI()
+    # response = client.chat.completions.create(
+    #     model="gpt-4",
+    #     messages=final_messages,
+    #     temperature=0
+    # )
+    # print(response.choices[0].message.content)
+    # Expected output: Uncertainty Regarding Policy Access & Implementation
