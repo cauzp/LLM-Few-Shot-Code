@@ -7,6 +7,11 @@
 #
 # Last Updated: September 21, 2025
 
+# response = client.chat.completions.create(
+#     model="DeepSeek R1 671B",
+#     messages=final_messages,
+#     temperature=0
+
 # --- 1. THEMATIC FRAMEWORK DEFINITION ---
 # This dictionary contains the final six thematic categories and their formal definitions.
 # These definitions are used to instruct the LLM on the scope of each category.
