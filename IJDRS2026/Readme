@@ -1,1 +1,28 @@
+# IJDRS2026 — Few-shot 提示库
+
+本仓库存放用于少样本（few-shot）实验的 prompt，包括标签定义与典型例句。原始语料为中文，本仓库仅保留中文内容；非中文母语者可使用翻译工具快速了解内容。
+
+## 目录
+- 少样本提示脚本与数据：[`IJDRS-2025-1-Sentiment.py`](IJDRS2026/IJDRS-2025-1-Sentiment.py)、[`IJDRS-2025-1-Topic.py`](IJDRS2026/IJDRS-2025-1-Topic.py)
+- 数据说明与使用指南：本文件（`Readme`）
+- 该仓库进存放了核心定义，便于用户快速上手少样本实验。相关支撑函数请自行编写或参考其他资源。
+
+## 使用说明
+1. 查看或运行示例脚本：[`IJDRS-2025-1-Sentiment.py`](IJDRS2026/IJDRS-2025-1-Sentiment.py) / [`IJDRS-2025-1-Topic.py`](IJDRS2026/IJDRS-2025-1-Topic.py)。
+2. 由于文本为中文，实验或复现时请确保模型/工具支持中文输入。
+
+## English translation
+
+# IJDRS2026 — Few-shot Prompt Library
+
+This repository contains prompts for few-shot experiments, including label definitions and representative example sentences. The original corpus is in Chinese; this repository retains only the Chinese content. Non-native speakers may use translation tools to quickly understand the content.
+
+## Contents
+- Few-shot prompt scripts and data: [`IJDRS-2025-1-Sentiment.py`](IJDRS2026/IJDRS-2025-1-Sentiment.py), [`IJDRS-2025-1-Topic.py`](IJDRS2026/IJDRS-2025-1-Topic.py)
+- Data description and usage guide: this file (`Readme`)
+- This repository stores core definitions to help users quickly get started with few-shot experiments. Supporting functions should be implemented by the user or referenced from other resources.
+
+## Usage
+1. View or run the example scripts: [`IJDRS-2025-1-Sentiment.py`](IJDRS2026/IJDRS-2025-1-Sentiment.py) / [`IJDRS-2025-1-Topic.py`](IJDRS2026/IJDRS-2025-1-Topic.py).
+2. Since the text is in Chinese, ensure the model/tool supports Chinese input when running experiments or reproductions.
 
