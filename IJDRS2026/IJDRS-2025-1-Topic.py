@@ -5,7 +5,7 @@ CLASSIFICATIONS = {
    "具体质疑": "对具体安全措施提出质疑的评论",
    "政策建议": "提出改进措施和政策建议的评论",
    "事实探寻": "询问和讨论事件具体细节的评论",
-   "社会关切": "表达社会层面关注和反思的评论",
+   "系统批判": "表达社会层面关注和反思的评论",
    "时空情境": "关注事发时间地点特殊性的评论",
    "其他": "不属于上述类别的评论"
 }
@@ -40,10 +40,10 @@ examples = [
         {"discussion": "为什么宿舍门是锁着的？", "classification": "具体质疑"},
         {"discussion": "紧急出口在哪里？", "classification": "具体质疑"},
         
-        # --- Social Commentary (社会关切) ---
-        {"discussion": "今年第二次学校火灾了", "classification": "社会关切"},
-        {"discussion": "这显示了教育水平在下降", "classification": "社会关切"},
-        {"discussion": "农村学校的风险越来越大", "classification": "社会关切"},
+        # --- Systemic Critique (系统批判) ---
+        {"discussion": "今年第二次学校火灾了", "classification": "系统批判"},
+        {"discussion": "这显示了教育水平在下降", "classification": "系统批判"},
+        {"discussion": "农村学校的风险越来越大", "classification": "系统批判"},
         
         # --- Systemic Attribution (制度归因) ---
         {"discussion": "私立学校的又一悲剧——利益重于安全", "classification": "制度归因"},
