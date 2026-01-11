@@ -1,1 +1,153 @@
-1
+# -*- coding: utf-8 -*-
+#
+# This script defines the thematic framework and few-shot examples for classifying
+# social media comments related to China's National Childcare Subsidy Policy.
+# The framework is based on the consolidated 6-category scheme developed
+# for the research paper.
+#
+# Last Updated: September 21, 2025
+
+# response = client.chat.completions.create(
+#     model="DeepSeek R1 671B",
+#     messages=final_messages,
+#     temperature=0
+
+# --- 1. THEMATIC FRAMEWORK DEFINITION ---
+# This dictionary contains the final six thematic categories and their formal definitions.
+# These definitions are used to instruct the LLM on the scope of each category.
+
+CLASSIFICATIONS = {
+    "Uncertainty Regarding Policy Access & Implementation":
+        "This theme encompasses comments expressing confusion or concern about the practical and procedural aspects of the subsidy. It includes direct questions about the application process (how, where, and when to apply) as well as anxieties regarding the specific eligibility requirements and potential barriers to access.",
+
+    "Discourse on Policy Fairness & Equity":
+        "This theme captures all discourse centered on the principles of distributive justice and fairness. It includes grievances related to the policy's temporal boundaries (eligibility cutoffs), perceptions of intergenerational inequity, and broader appeals for a more universally inclusive policy design.",
+
+    "Evaluation of Policy's Economic Incentive & Impact":
+        "This theme includes comments that perform a cost-benefit analysis of the subsidy. It covers the public's divergent perceptions of the subsidy's financial value and the subsequent deliberation on whether this economic incentive is substantial enough to influence personal fertility decisions.",
+
+    "Public Scrutiny & Calls for Reform":
+        "This theme represents the public acting as both critic and contributor. It includes comments expressing skepticism about the government's ability or intent to realize the policy, as well as constructive suggestions for improving the policy.",
+
+    "Emotional Venting & Jocular Commentary":
+        "This theme captures comments that do not offer a substantive inquiry or critique, but rather use humor, sarcasm, memes, or purely emotional language to react to the policy. It reflects the social and affective dimensions of online discourse.",
+
+    "Other / Unclassifiable":
+        "This is a residual category for comments that are irrelevant to the childcare subsidy policy, nonsensical, too fragmented to interpret, or are purely conversational and off-topic."
+}
+
+# --- 2. FEW-SHOT LEARNING EXAMPLES ---
+# This list provides three high-quality, representative examples for each category.
+# These examples are crucial for "teaching" the LLM the nuances of the classification task.
+
+EXAMPLES = [
+    # Category: Uncertainty Regarding Policy Access & Implementation
+    {"discussion": "怎么领？去哪领？", "classification": "Uncertainty Regarding Policy Access & Implementation"},
+    {"discussion": "没结婚证能领吗", "classification": "Uncertainty Regarding Policy Access & Implementation"},
+    {"discussion": "农村户口有吗", "classification": "Uncertainty Regarding Policy Access & Implementation"},
+
+    # Category: Discourse on Policy Fairness & Equity
+    {"discussion": "21年12月31号完美错过", "classification": "Discourse on Policy Fairness & Equity"},
+    {"discussion": "80后什么好事都完美错过", "classification": "Discourse on Policy Fairness & Equity"},
+    {"discussion": "所有孩子都应该有", "classification": "Discourse on Policy Fairness & Equity"},
+
+    # Category: Evaluation of Policy's Economic Incentive & Impact
+    {"discussion": "3600算什么，杯水车薪", "classification": "Evaluation of Policy's Economic Incentive & Impact"},
+    {"discussion": "不会为了这点钱生孩子", "classification": "Evaluation of Policy's Economic Incentive & Impact"},
+    {"discussion": "想生的不差这三千，不想生的给三万也不生", "classification": "Evaluation of Policy's Economic Incentive & Impact"},
+
+    # Category: Public Scrutiny & Calls for Reform
+    {"discussion": "真的假的", "classification": "Public Scrutiny & Calls for Reform"},
+    {"discussion": "又是画饼", "classification": "Public Scrutiny & Calls for Reform"},
+    {"discussion": "每年36000元，一直发到18岁，这才具有诱惑力", "classification": "Public Scrutiny & Calls for Reform"},
+
+    # Category: Emotional Venting & Jocular Commentary
+    {"discussion": "小名就叫三千六得了", "classification": "Emotional Venting & Jocular Commentary"},
+    {"discussion": "宝宝：小小的我已经会赚钱啦", "classification": "Emotional Venting & Jocular Commentary"},
+    {"discussion": "生99个就能领100万", "classification": "Emotional Venting & Jocular Commentary"},
+
+    # Category: Other / Unclassifiable
+    {"discussion": "抖音什么都有", "classification": "Other / Unclassifiable"},
+    {"discussion": "会不会有鱼", "classification": "Other / Unclassifiable"},
+    {"discussion": "我是秦始皇", "classification": "Other / Unclassifiable"}
+]
+
+# --- 3. PROMPT STRUCTURE FOR THE LARGE LANGUAGE MODEL ---
+# This list defines the sequence of messages for constructing the final prompt.
+# It uses f-string placeholders {classifications} and {examples} which will be
+# formatted with the data above before being sent to the LLM API.
+
+MESSAGES_PATTERN = [
+    {
+        "role": "system",
+        "content": """You are a social media comment classification assistant. For comments regarding "China's National Childcare Subsidy Policy," please classify them based on their primary theme. Note:
+1. Assign only the single most relevant category to each comment.
+2. Prioritize the core content over superficial sentiment or individual words.
+3. Be mindful of slang, regional expressions, or implicit meanings to judge the true intent."""
+    },
+    {
+        "role": "user",
+        "content": "Here are the categories and their definitions:\n{classifications}\n\nHere are some examples:\n{examples}"
+    },
+    {
+        "role": "user",
+        "content": "Please assign a category for the following comment. Respond with only the category name:\n{text}"
+    }
+]
+
+# --- 4. UTILITY FUNCTION TO BUILD THE PROMPT ---
+# This is an example function demonstrating how to use the above components
+# to construct a complete prompt ready for an LLM API call.
+
+def build_prompt_messages(text_to_classify):
+    """
+    Constructs the full list of messages for the LLM API call.
+
+    Args:
+        text_to_classify (str): The new user comment that needs classification.
+
+    Returns:
+        list: A list of dictionaries representing the conversation history
+              and the final classification request.
+    """
+    # Format the classifications string: "Category Name: Definition"
+    classifications_str = "\n".join([f"{name}: {desc}" for name, desc in CLASSIFICATIONS.items()])
+
+    # Format the examples string: "Comment: [discussion]\nCategory: [classification]"
+    examples_str = "\n\n".join([f"Comment: {ex['discussion']}\nCategory: {ex['classification']}" for ex in EXAMPLES])
+
+    # Create a deep copy of the message pattern to avoid modifying the original
+    import copy
+    prompt_messages = copy.deepcopy(MESSAGES_PATTERN)
+
+    # Substitute the formatted classifications, examples, and new text into the prompt
+    prompt_messages[1]["content"] = prompt_messages[1]["content"].format(
+        classifications=classifications_str,
+        examples=examples_str
+    )
+    prompt_messages[2]["content"] = prompt_messages[2]["content"].format(text=text_to_classify)
+
+    return prompt_messages
+
+# --- EXAMPLE USAGE ---
+if __name__ == '__main__':
+    # Define a new comment to be classified
+    new_comment = "这个钱直接打到社保卡里吗？" # "Will this money be sent directly to my social security card?"
+
+    # Build the full prompt using the utility function
+    final_messages = build_prompt_messages(new_comment)
+
+    # Print the constructed messages to see the final prompt structure
+    import json
+    print(json.dumps(final_messages, indent=2, ensure_ascii=False))
+
+    # In a real application, you would now send `final_messages` to your LLM's API.
+    # For example:
+    # client = OpenAI()
+    # response = client.chat.completions.create(
+    #     model="DeepSeek R1 671B",
+    #     messages=final_messages,
+    #     temperature=0
+    # )
+    # print(response.choices[0].message.content)
+    # Expected output: Uncertainty Regarding Policy Access & Implementation
