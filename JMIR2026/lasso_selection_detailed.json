@@ -1,0 +1,562 @@
+{
+  "Disease Knowledge and Transmission Discussion": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "ln(Consumption Expenditure per capita (2023))",
+      "Life Expectancy (2020)",
+      "Gender Ratio (2020)",
+      "HIV Incidence Rate (2022)"
+    ],
+    "n_selected": 5,
+    "best_alpha": 0.050729800906537274,
+    "cv_score": 0.7803297544906374,
+    "feature_importance": [
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.5707062706539355,
+        "Abs_Coefficient": 0.5707062706539355,
+        "Selected": true
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.4372270524837624,
+        "Abs_Coefficient": 0.4372270524837624,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.42966811626350354,
+        "Abs_Coefficient": 0.42966811626350354,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.03335578432304295,
+        "Abs_Coefficient": 0.03335578432304295,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.004879645441334421,
+        "Abs_Coefficient": 0.004879645441334421,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Humor, Banter and Ironic Expression": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "ln(Consumption Expenditure per capita (2023))",
+      "Life Expectancy (2020)",
+      "Natural Population Growth Rate (2023)",
+      "Gender Ratio (2020)",
+      "Average Schooling Years (2020)",
+      "HIV Incidence Rate (2022)"
+    ],
+    "n_selected": 7,
+    "best_alpha": 0.026366508987303583,
+    "cv_score": 0.5610951643845614,
+    "feature_importance": [
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.8759727826159937,
+        "Abs_Coefficient": 0.8759727826159937,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.370345724572822,
+        "Abs_Coefficient": 0.370345724572822,
+        "Selected": true
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": -0.3085388984521978,
+        "Abs_Coefficient": 0.3085388984521978,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.2504064766409451,
+        "Abs_Coefficient": 0.2504064766409451,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.18662311850711236,
+        "Abs_Coefficient": 0.18662311850711236,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": -0.17901305908844817,
+        "Abs_Coefficient": 0.17901305908844817,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.03203695317044857,
+        "Abs_Coefficient": 0.03203695317044857,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Information Sources and Credibility Discussion": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "Life Expectancy (2020)",
+      "Natural Population Growth Rate (2023)",
+      "Gender Ratio (2020)",
+      "HIV Incidence Rate (2022)",
+      "HIV Mortality Rate (2022)"
+    ],
+    "n_selected": 6,
+    "best_alpha": 0.09760536373079001,
+    "cv_score": 0.4954603146629204,
+    "feature_importance": [
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.30318198475398245,
+        "Abs_Coefficient": 0.30318198475398245,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.20531590804415545,
+        "Abs_Coefficient": 0.20531590804415545,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.19411279524975156,
+        "Abs_Coefficient": 0.19411279524975156,
+        "Selected": true
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.16570053159864181,
+        "Abs_Coefficient": 0.16570053159864181,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.1269620752091533,
+        "Abs_Coefficient": 0.1269620752091533,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.03034514425428749,
+        "Abs_Coefficient": 0.03034514425428749,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Moral Judgment and Attribution of Blame": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "Life Expectancy (2020)",
+      "Gender Ratio (2020)",
+      "HIV Incidence Rate (2022)"
+    ],
+    "n_selected": 4,
+    "best_alpha": 0.0703669003827306,
+    "cv_score": 0.6892105080599025,
+    "feature_importance": [
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.4222453101840015,
+        "Abs_Coefficient": 0.4222453101840015,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.41186077323554904,
+        "Abs_Coefficient": 0.41186077323554904,
+        "Selected": true
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.32386085349480187,
+        "Abs_Coefficient": 0.32386085349480187,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.16560594775250023,
+        "Abs_Coefficient": 0.16560594775250023,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Personal Experience and Current Situation Sharing": {
+    "selected_vars": [
+      "ln(Consumption Expenditure per capita (2023))",
+      "Life Expectancy (2020)",
+      "Gender Ratio (2020)",
+      "HIV Incidence Rate (2022)",
+      "HIV Mortality Rate (2022)"
+    ],
+    "n_selected": 5,
+    "best_alpha": 0.0703669003827306,
+    "cv_score": 0.7868739438477514,
+    "feature_importance": [
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.6588910646434087,
+        "Abs_Coefficient": 0.6588910646434087,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.2520345115251685,
+        "Abs_Coefficient": 0.2520345115251685,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.22349015672277434,
+        "Abs_Coefficient": 0.22349015672277434,
+        "Selected": true
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.1383034949808708,
+        "Abs_Coefficient": 0.1383034949808708,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.04862478349054287,
+        "Abs_Coefficient": 0.04862478349054287,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": -0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": -0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Risk Underestimation and Cognitive Bias": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "Life Expectancy (2020)",
+      "Natural Population Growth Rate (2023)",
+      "Gender Ratio (2020)",
+      "Average Schooling Years (2020)",
+      "HIV Incidence Rate (2022)"
+    ],
+    "n_selected": 6,
+    "best_alpha": 0.036572773363888283,
+    "cv_score": 0.7759339371308533,
+    "feature_importance": [
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.5849822827450094,
+        "Abs_Coefficient": 0.5849822827450094,
+        "Selected": true
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.5003058737908712,
+        "Abs_Coefficient": 0.5003058737908712,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.43433553845948747,
+        "Abs_Coefficient": 0.43433553845948747,
+        "Selected": true
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": -0.18677656208247087,
+        "Abs_Coefficient": 0.18677656208247087,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.07712221214545778,
+        "Abs_Coefficient": 0.07712221214545778,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.0180501840637093,
+        "Abs_Coefficient": 0.0180501840637093,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Social Impact and Public Issue Discussion": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "Life Expectancy (2020)",
+      "Natural Population Growth Rate (2023)",
+      "Gender Ratio (2020)",
+      "Average Schooling Years (2020)",
+      "HIV Incidence Rate (2022)",
+      "HIV Mortality Rate (2022)"
+    ],
+    "n_selected": 7,
+    "best_alpha": 0.036572773363888283,
+    "cv_score": 0.6497914004322664,
+    "feature_importance": [
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.542274716658352,
+        "Abs_Coefficient": 0.542274716658352,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.44416539777707464,
+        "Abs_Coefficient": 0.44416539777707464,
+        "Selected": true
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": -0.25932688234858353,
+        "Abs_Coefficient": 0.25932688234858353,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.22647809275070488,
+        "Abs_Coefficient": 0.22647809275070488,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.15457584270247954,
+        "Abs_Coefficient": 0.15457584270247954,
+        "Selected": true
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.12674967862769432,
+        "Abs_Coefficient": 0.12674967862769432,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.028241304679946403,
+        "Abs_Coefficient": 0.028241304679946403,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": -0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Support, Encouragement and Humanitarian Care": {
+    "selected_vars": [
+      "ln(GDP per capita (2023))",
+      "Gender Ratio (2020)",
+      "HIV Mortality Rate (2022)"
+    ],
+    "n_selected": 3,
+    "best_alpha": 0.13538761800225446,
+    "cv_score": 0.3598427054054585,
+    "feature_importance": [
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.3550262774219764,
+        "Abs_Coefficient": 0.3550262774219764,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.24681275004059042,
+        "Abs_Coefficient": 0.24681275004059042,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": 0.022505791322594237,
+        "Abs_Coefficient": 0.022505791322594237,
+        "Selected": true
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  },
+  "Worry, Fear and Anxiety Emotions": {
+    "selected_vars": [
+      "Life Expectancy (2020)",
+      "Gender Ratio (2020)",
+      "Average Schooling Years (2020)",
+      "HIV Incidence Rate (2022)"
+    ],
+    "n_selected": 4,
+    "best_alpha": 0.026366508987303583,
+    "cv_score": 0.7896315835741381,
+    "feature_importance": [
+      {
+        "Feature": "HIV Incidence Rate (2022)",
+        "Coefficient": 0.6164950471377231,
+        "Abs_Coefficient": 0.6164950471377231,
+        "Selected": true
+      },
+      {
+        "Feature": "Life Expectancy (2020)",
+        "Coefficient": 0.57692258662178,
+        "Abs_Coefficient": 0.57692258662178,
+        "Selected": true
+      },
+      {
+        "Feature": "Gender Ratio (2020)",
+        "Coefficient": 0.4652259663889648,
+        "Abs_Coefficient": 0.4652259663889648,
+        "Selected": true
+      },
+      {
+        "Feature": "Average Schooling Years (2020)",
+        "Coefficient": -0.3416157685776568,
+        "Abs_Coefficient": 0.3416157685776568,
+        "Selected": true
+      },
+      {
+        "Feature": "Natural Population Growth Rate (2023)",
+        "Coefficient": -0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "ln(Consumption Expenditure per capita (2023))",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "ln(GDP per capita (2023))",
+        "Coefficient": -0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      },
+      {
+        "Feature": "HIV Mortality Rate (2022)",
+        "Coefficient": 0.0,
+        "Abs_Coefficient": 0.0,
+        "Selected": false
+      }
+    ]
+  }
+}
