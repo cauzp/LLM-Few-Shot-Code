@@ -1,0 +1,10 @@
+﻿Target,N_Selected,Selected_Variables,Best_Alpha,CV_Score
+Disease Knowledge and Transmission Discussion,5,"ln(GDP per capita (2023)), ln(Consumption Expenditure per capita (2023)), Life Expectancy (2020), Gender Ratio (2020), HIV Incidence Rate (2022)",0.050729800906537274,0.7803297544906374
+"Humor, Banter and Ironic Expression",7,"ln(GDP per capita (2023)), ln(Consumption Expenditure per capita (2023)), Life Expectancy (2020), Natural Population Growth Rate (2023), Gender Ratio (2020), Average Schooling Years (2020), HIV Incidence Rate (2022)",0.026366508987303583,0.5610951643845614
+Information Sources and Credibility Discussion,6,"ln(GDP per capita (2023)), Life Expectancy (2020), Natural Population Growth Rate (2023), Gender Ratio (2020), HIV Incidence Rate (2022), HIV Mortality Rate (2022)",0.09760536373079001,0.4954603146629204
+Moral Judgment and Attribution of Blame,4,"ln(GDP per capita (2023)), Life Expectancy (2020), Gender Ratio (2020), HIV Incidence Rate (2022)",0.0703669003827306,0.6892105080599025
+Personal Experience and Current Situation Sharing,5,"ln(Consumption Expenditure per capita (2023)), Life Expectancy (2020), Gender Ratio (2020), HIV Incidence Rate (2022), HIV Mortality Rate (2022)",0.0703669003827306,0.7868739438477514
+Risk Underestimation and Cognitive Bias,6,"ln(GDP per capita (2023)), Life Expectancy (2020), Natural Population Growth Rate (2023), Gender Ratio (2020), Average Schooling Years (2020), HIV Incidence Rate (2022)",0.036572773363888283,0.7759339371308533
+Social Impact and Public Issue Discussion,7,"ln(GDP per capita (2023)), Life Expectancy (2020), Natural Population Growth Rate (2023), Gender Ratio (2020), Average Schooling Years (2020), HIV Incidence Rate (2022), HIV Mortality Rate (2022)",0.036572773363888283,0.6497914004322664
+"Support, Encouragement and Humanitarian Care",3,"ln(GDP per capita (2023)), Gender Ratio (2020), HIV Mortality Rate (2022)",0.13538761800225446,0.3598427054054585
+"Worry, Fear and Anxiety Emotions",4,"Life Expectancy (2020), Gender Ratio (2020), Average Schooling Years (2020), HIV Incidence Rate (2022)",0.026366508987303583,0.7896315835741381
